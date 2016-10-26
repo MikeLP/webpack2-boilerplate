@@ -1,4 +1,11 @@
-import webpack, {LoaderOptionsPlugin, DefinePlugin, NoErrorsPlugin, HotModuleReplacementPlugin} from 'webpack'
+import webpack, {
+  LoaderOptionsPlugin,
+  DefinePlugin,
+  NoErrorsPlugin,
+  HotModuleReplacementPlugin,
+  ProvidePlugin
+} from 'webpack'
+
 import path from 'path'
 
 import autoprefixer from 'autoprefixer'
@@ -12,7 +19,7 @@ import CompressionPlugin from 'compression-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ImageminPlugin from 'imagemin-webpack-plugin'
 
-const {UglifyJsPlugin, CommonsChunkPlugin, OccurrenceOrderPlugin} = webpack.optimize
+const {UglifyJsPlugin, CommonsChunkPlugin, OccurrenceOrderPlugin, DedupePlugin} = webpack.optimize
 
 const cssLoaderOptions = 'modules&minimize=1&importLoaders=1&localIdentName=[path]__[name]_[local]__[hash:base64:8]!postcss'
 
@@ -27,7 +34,7 @@ const output = {
 
 const entry = {
   app: './index.js',
-  vendor: ['whatwg-fetch']
+  vendor: ['babel-polyfill', 'whatwg-fetch', 'es6-promise']
 }
 
 const rules = [
@@ -68,12 +75,13 @@ const config = {
     alias: {
       css: path.join(__dirname, 'src/assets/css'),
       img: path.join(__dirname, 'src/assets/images'),
-      fonts: path.join(__dirname, 'src/assets/fonts')
+      fonts: path.join(__dirname, 'src/assets/fonts'),
+      components: path.join(__dirname, 'src/app/components')
     }
   },
   plugins: [
     new DefinePlugin({ENV: JSON.stringify(ENV)}),
-    new CommonsChunkPlugin({name: 'vendor', filename: 'static/js/vendor.[hash:8].js', async: true}),
+    new CommonsChunkPlugin({name: 'vendor', filename: 'static/js/vendor.[hash:8].js'}),
     new OccurrenceOrderPlugin,
     new LoaderOptionsPlugin({
       debug: ENV === 'development',
@@ -99,7 +107,14 @@ const config = {
       }
     }),
     new CaseSensitivePathsPlugin,
-    new CompressionPlugin({asset: '[path].gz[query]', algorithm: 'gzip', test: /\.js$|\.html$/, threshold: 10240, minRatio: 0.8}),
+    new ProvidePlugin({Promise: 'exports?global.Promise!es6-promise', fetch: 'whatwg-fetch'}),
+    new CompressionPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.js$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8
+    }),
     new ImageminPlugin({
       disable: false,
       optipng: {
@@ -111,8 +126,7 @@ const config = {
       jpegtran: {
         progressive: false
       },
-      svgo: {
-      },
+      svgo: {},
       pngquant: null, // pngquant is not run unless you pass options here
       plugins: []
     })
@@ -158,16 +172,8 @@ if (ENV === 'development') {
   /************************************************************************
   *                               PRODUCTION
   *************************************************************************/
-
-  config.module.rules.push({
-    test: /\.(scss|sass|css)$/,
-    loader: ExtractTextPlugin.extract({
-      fallbackLoader: 'style-loader',
-      loader: [`css-loader?${cssLoaderOptions}`, 'postcss-loader']
-    })
-  })
-
   config.plugins.push(new UglifyJsPlugin({
+    sourceMap: true,
     compress: {
       sequences: true,
       dead_code: true,
@@ -180,6 +186,15 @@ if (ENV === 'development') {
       comments: false
     }
   }))
+
+  config.module.rules.push({
+    test: /\.(scss|sass|css)$/,
+    loader: ExtractTextPlugin.extract({
+      fallbackLoader: 'style-loader',
+      loader: [`css-loader?${cssLoaderOptions}`, 'postcss-loader']
+    })
+  })
+  config.plugins.push(new DedupePlugin)
   config.plugins.push(new ExtractTextPlugin('static/css/style.[hash:8].css'))
 }
 
