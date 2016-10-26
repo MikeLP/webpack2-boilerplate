@@ -66,6 +66,14 @@ It correctly bundles in production mode and optimizes the build for the best per
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
+### `$ npm run start:prod`
+
+Starts production example server that looking on `build` folder.
+The build is minified and the filenames include the hashes.<br>
+
+Open <http://localhost:9000> to view it in the browser.
+
+
 ## CSS3 (SCSS) usage
 
 ```scss

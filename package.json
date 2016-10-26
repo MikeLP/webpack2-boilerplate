@@ -73,7 +73,7 @@
         "build": "npm run _config:prod && npm run webpack",
 
         "start:prod": "node_modules/.bin/pushstate-server build",
-        "start:dev": "node_modules/.bin/webpack-dev-server --content-base public/ --open --port 8080 --history-api-fallback --inline --client-log-level",
+        "start:dev": "node_modules/.bin/webpack-dev-server --content-base public/ --open --port 3000 --history-api-fallback --inline --client-log-level",
         "start:secure": "npm run start:dev --https",
         "lint": "npm run lint:css && npm run lint:js",
         "lint:js": "node_modules/.bin/eslint ./src ",
