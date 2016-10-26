@@ -136,7 +136,7 @@ if (ENV === 'development') {
     './index.js'
   ]
   // config.devtool = 'inline-source-map'
-  // config.devtool = 'eval-source-map'
+  config.devtool = 'eval-source-map'
 } else {
   /************************************************************************
   *                               PRODUCTION
