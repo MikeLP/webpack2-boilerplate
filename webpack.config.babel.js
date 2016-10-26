@@ -10,6 +10,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin'
 import CompressionPlugin from 'compression-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import ImageminPlugin from 'imagemin-webpack-plugin'
 
 const {UglifyJsPlugin, CommonsChunkPlugin, OccurrenceOrderPlugin} = webpack.optimize
 
@@ -98,7 +99,23 @@ const config = {
       }
     }),
     new CaseSensitivePathsPlugin,
-    new CompressionPlugin({asset: '[path].gz[query]', algorithm: 'gzip', test: /\.js$|\.html$/, threshold: 10240, minRatio: 0.8})
+    new CompressionPlugin({asset: '[path].gz[query]', algorithm: 'gzip', test: /\.js$|\.html$/, threshold: 10240, minRatio: 0.8}),
+    new ImageminPlugin({
+      disable: false,
+      optipng: {
+        optimizationLevel: 3
+      },
+      gifsicle: {
+        optimizationLevel: 1
+      },
+      jpegtran: {
+        progressive: false
+      },
+      svgo: {
+      },
+      pngquant: null, // pngquant is not run unless you pass options here
+      plugins: []
+    })
   ],
   bail: true,
   cache: true,
