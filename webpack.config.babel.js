@@ -93,6 +93,9 @@ const config = {
     new HtmlWebpackPlugin({
       inject: true,
       template: path.join(__dirname, 'public/index.html'),
+      // Change to your title
+      title: 'App - Example',
+      favicon: path.join(__dirname, 'public/favicon.ico'),
       minify: {
         removeComments: true,
         collapseWhitespace: true,
