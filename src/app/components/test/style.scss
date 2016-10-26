@@ -1,0 +1,17 @@
+$red: #ff1700;
+$white: '#fff';
+
+
+.test {
+    background-color: $red;
+    background-image: url('./cat.jpg');
+    display: flex;
+}
+
+.myClass {
+    border-radius: 10px;
+
+    .myClass2 {
+        color: $white;
+    }
+}

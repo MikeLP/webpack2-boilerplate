@@ -1,0 +1,6 @@
+*.lock
+*.log
+node_modules
+build
+webpack.config.js
+.DS_Store
