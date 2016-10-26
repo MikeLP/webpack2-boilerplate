@@ -107,5 +107,5 @@ Component example:
 ```js
     import style from './style.scss'
 
-const template = `<div class="${style.myClass}"></div>`
+    const template = `<div class="${style.myClass}"></div>`
 ```
