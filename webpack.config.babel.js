@@ -116,6 +116,7 @@ if (ENV === 'development') {
       'style-loader', {
         loader: 'css-loader',
         options: {
+          localIdentName: '[path]__[name]_[local]__[hash:base64:8]',
           modules: 1,
           importLoaders: 1
         }
