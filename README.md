@@ -113,7 +113,13 @@ Component example:
 ### index.js
 
 ```js
-    import style from './style.scss'
+import style from './style.scss'
 
-    const template = `<div class="${style.myClass}"></div>`
+const {myClass, myClass2} = style
+
+const template = `<div class="${myClass}"><span class="${myClass2}"></span></div>`
+
+export default {
+  template
+}
 ```
