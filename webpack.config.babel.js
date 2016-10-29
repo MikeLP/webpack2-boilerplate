@@ -19,7 +19,7 @@ import CompressionPlugin from 'compression-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ImageminPlugin from 'imagemin-webpack-plugin'
 
-const {UglifyJsPlugin, CommonsChunkPlugin, OccurrenceOrderPlugin, DedupePlugin} = webpack.optimize
+const {UglifyJsPlugin, CommonsChunkPlugin, DedupePlugin} = webpack.optimize
 
 const cssLoaderOptions = 'modules&minimize=1&importLoaders=1&localIdentName=[path]__[name]_[local]__[hash:base64:8]!postcss'
 
@@ -82,7 +82,6 @@ const config = {
   plugins: [
     new DefinePlugin({ENV: JSON.stringify(ENV)}),
     new CommonsChunkPlugin({name: 'vendor', filename: 'static/js/vendor.[hash:8].js'}),
-    new OccurrenceOrderPlugin,
     new LoaderOptionsPlugin({
       debug: ENV === 'development',
       options: {
