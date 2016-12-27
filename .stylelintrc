@@ -1,0 +1,23 @@
+{
+  "plugins": [
+    "stylelint-scss"
+  ],
+  "rules": {
+    "max-empty-lines": 5,
+    "color-no-invalid-hex": true,
+    "property-no-unknown": [true, {
+      "ignoreProperties": [
+        "composes"
+      ]
+    }],
+    "selector-pseudo-class-no-unknown": [
+      true, {
+        "ignorePseudoClasses": [
+          "global",
+          "local"
+        ]
+      }
+    ],
+    "scss/selector-no-redundant-nesting-selector": true
+  }
+}

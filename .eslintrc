@@ -1,36 +1,84 @@
 {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es6": true
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "extends": ["eslint:recommended", "plugin:node/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "ecmaFeatures": {
+      "jsx": true,
+      "generators": true,
+      "classes": true,
+      "experimentalObjectRestSpread": true
     },
-    "extends": ["eslint:recommended", "plugin:node/recommended"],
-    "parser": "babel-eslint",
-    "parserOptions": {
-        "sourceType": "module"
-    },
-    "rules": {
-        "indent": [
-            "error",
-            2
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "never"
-        ],
-        "no-console": 0,
-        "node/no-deprecated-api": 0,
-        "node/no-missing-require": 0,
-        "node/no-unpublished-require": 0,
-        "node/no-unsupported-features": 0,
-        "node/shebang": 0
-    }
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "import",
+    "flowtype",
+    "jsx-a11y",
+    "async"
+  ],
+  "rules": {
+    "indent": [
+      "error",
+      2, {
+        "SwitchCase": 1
+      }
+    ],
+    "linebreak-style": 0,
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "no-console": 0,
+    "no-case-declarations": 0,
+    "node/no-unpublished-bin": 0,
+    "node/process-exit-as-throw": 0,
+    "node/no-deprecated-api": 0,
+    "node/no-missing-require": 0,
+    "node/no-unpublished-require": 0,
+    "node/no-unsupported-features": 0,
+    "node/shebang": 0,
+
+    "react/jsx-equals-spacing": ["warn", "never"],
+    "react/jsx-no-duplicate-props": ["warn", {
+      "ignoreCase": true
+    }],
+    "react/jsx-no-undef": "warn",
+    "react/jsx-pascal-case": ["warn", {
+      "allowAllCaps": true,
+      "ignore": []
+    }],
+    "react/jsx-uses-react": "warn",
+    "react/jsx-uses-vars": "warn",
+    "react/no-danger-with-children": "warn",
+    "react/no-deprecated": "warn",
+    "react/no-direct-mutation-state": "warn",
+    "react/no-is-mounted": "warn",
+    "react/react-in-jsx-scope": "error",
+    "react/require-render-return": "warn",
+    "react/style-prop-object": "warn",
+
+    "jsx-a11y/aria-role": "warn",
+    "jsx-a11y/img-has-alt": "warn",
+    "jsx-a11y/img-redundant-alt": "warn",
+    "jsx-a11y/no-access-key": "warn",
+
+    "flowtype/define-flow-type": "warn",
+    "flowtype/require-valid-file-annotation": "warn",
+    "flowtype/use-flow-type": "warn",
+
+     "async/missing-await-in-async-fn": 1
+  }
 }

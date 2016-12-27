@@ -1,7 +1,0 @@
-rules:
-  class-name-format:
-  - 0
-  indentation:
-    - 4
-    -
-      size: 4

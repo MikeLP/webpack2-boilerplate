@@ -1,0 +1,71 @@
+{
+  "root": true,
+  "plugins": [
+    "esformatter-jsx",
+    "esformatter-ignore",
+    "esformatter-remove-trailing-commas",
+    "esformatter-collapse-objects",
+    "esformatter-auto-wrap",
+    "esformatter-parseint",
+    "esformatter-braces",
+    "esformatter-curly",
+    "esformatter-asi"
+  ],
+  "lineBreak": {
+    "before": {
+      "ArrayExpressionClosing": 1
+    },
+    "after": {
+      "ArrayExpressionOpening": 1,
+      "ArrayExpressionComma": 1
+    }
+  },
+  "quotes": {
+    "type": "single"
+  },
+  "jsx": {
+    "formatJSX": true,
+    "attrsOnSameLineAsTag": false,
+    "maxAttrsOnTag": 2,
+    "firstAttributeOnSameLine": false,
+    "formatJSXExpressions": true,
+    "JSXExpressionsSingleLine": true,
+    "alignWithFirstAttribute": false,
+    "spaceInJSXExpressionContainers": " ",
+    "htmlOptions": {
+      "brace_style": "collapse",
+      "indent_char": " ",
+      "indent_size": 2,
+      "max_preserve_newlines": 2,
+      "preserve_newlines": true
+    }
+  },
+  "whiteSpace": {
+    "before": {
+      "PropertyName": 1
+    },
+    "after": {}
+  },
+  "autoWrap": {
+    "maxLineLength": 120,
+    "eclipseCompatible": true
+  },
+  "collapseObjects": {
+    "ObjectExpression": {
+      "maxLineLength": 80,
+      "maxKeys": 2,
+      "maxDepth": 2,
+      "forbidden": [
+        "FunctionExpression"
+      ]
+    },
+    "ArrayExpression": {
+      "maxLineLength": 80,
+      "maxKeys": 3,
+      "maxDepth": 2,
+      "forbidden": [
+        "FunctionExpression"
+      ]
+    }
+  }
+}

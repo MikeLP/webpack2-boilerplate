@@ -1,6 +1,7 @@
-*.lock
 *.log
-node_modules
-build
+node_modules/
+build/
 webpack.config.js
 .DS_Store
+.idea/
+src/assets/fonts/
